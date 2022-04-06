@@ -1,0 +1,45 @@
+{
+  "name": "jump-road",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/LawsAreBull/JumpRoad.git",
+  "author": "Grigorov Alexandr",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "types"
+  ],
+  "scripts": {
+    "build": "yarn build:vite && yarn pcsync:pushAll && yarn playcanvas:download",
+    "build:vite": "tsc && vite build",
+    "dev": "concurrently -k \"vite build --watch\" \"cross-env PLAYCANVAS_TARGET_DIR='./playcanvas' pcwatch --force\"",
+    "dev:vite": "vite build --watch",
+    "lint": "eslint --cache --fix --ext .ts,.tsx src",
+    "pcsync:diffAll": "cross-env PLAYCANVAS_TARGET_DIR='./playcanvas' pcsync diffAll -e css,html,js,json",
+    "pcsync:pullAll": "cross-env PLAYCANVAS_TARGET_DIR='./playcanvas' pcsync pullAll -e css,html,js,json",
+    "pcsync:pushAll": "yes | cross-env PLAYCANVAS_TARGET_DIR='./playcanvas' pcsync pushAll -e css,html,js,json",
+    "playcanvas:download": "node ./scripts/playcanvasDownload.js"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "lit": "^2.0.0-rc.2",
+    "lodash": "^4.17.21",
+    "playcanvas": "^1.40.4",
+    "rxjs": "^7.3.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.171",
+    "@typescript-eslint/eslint-plugin": "^4.27.0",
+    "@typescript-eslint/parser": "^4.27.0",
+    "concurrently": "^6.2.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.28.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.3.1",
+    "sass": "^1.35.2",
+    "typescript": "^4.3.2",
+    "unzipper": "^0.10.11",
+    "vite": "^2.4.2"
+  }
+}
